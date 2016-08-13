@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>New ThinkJS Application</title>
+{% block style %}{% endblock %}
+</head>
+<body class="gray-bg">
+  {% block content %}{% endblock %}
+
+  <!-- 全局js -->
+  <script src="/static/admin/js/jquery.min.js?v=2.1.4"></script>
+  <script src="/static/admin/js/bootstrap.min.js?v=3.3.6"></script>
+  
+  {% block script %}{% endblock %}
+</body>
+</html>
