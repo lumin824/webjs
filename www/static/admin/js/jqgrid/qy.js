@@ -5,22 +5,22 @@ $(function () {
     $.jgrid.defaults.styleUI = 'Bootstrap';
 
     $("#table_list").jqGrid({
-        url:'/admin/gs/list',
-        editurl:'/admin/gs/edit',
+        url:'/admin/qy/list',
+        editurl:'/admin/qy/edit',
         datatype: "json",
         height: 'auto',
         autowidth: true,
         shrinkToFit: true,
         rowNum: 20,
         rowList: [10, 20, 30],
-        colNames: ['id', '注册号/统一社会信用代码', '名称', '类型', '法定代表人', '注册资本', '成立日期', '住所', '营业期限自', '营业期限至', '经营范围', '登记机关', '核准日期', '登记状态'],
+        colNames: ['id', '统一社会信用代码', '名称', '类型', '法定代表人', '注册资本', '成立日期', '住所', '营业期限自', '营业期限至', '经营范围', '登记机关', '核准日期', '登记状态'],
         colModel: [{
             name: 'id',
             index: 'id',
             width: 60,
             sorttype: "int",
             search: true
-          },{ name: 'zch', editable: true,
+          },{ name: 'tyshxydm', editable: true,
           },{ name: 'mc', editable: true,
           },{ name: 'lx', editable: true,
           },{ name: 'fddbr', editable: true,

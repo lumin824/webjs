@@ -6,7 +6,7 @@
 	<!-- Nested Container Starts -->
 		<div class="container text-center">
 			<h3 class="text-normal">Find the best Restaurants, Cafes &amp; Cuisine in Your Place</h3>
-			<form class="top-search">
+			<form class="top-search" action="/index/listing">
 				<div class="input-group-md">
 					<div class="input-group-btn search-panel">
 						<button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
@@ -26,11 +26,11 @@
 					<div class="form-group">
 						<div class="icon-addon addon-lg">
 							<label class="fa fa-search"></label>
-							<input type="text" class="form-control input-lg flat" name="search-location" placeholder="Search for a Restaurants, Cafes, Cuisine, etc..,">
+							<input type="text" class="form-control input-lg flat" name="q" placeholder="Search for a Restaurants, Cafes, Cuisine, etc..,">
 						</div>
 					</div>
 					<span class="input-group-btn">
-						<button class="btn btn-lg btn-secondary animation text-uppercase" type="button">Search</button>
+						<button class="btn btn-lg btn-secondary animation text-uppercase" type="submit">Search</button>
 					</span>
 				</div>
 			</form>
@@ -812,7 +812,7 @@
 {% block script %}
 <script type="text/javascript">
 $(function(){
-	$('#gridMenuItem').addClass("active");
+	$('.menu-item-grid').addClass("active");
 });
 </script>
 {% endblock %}

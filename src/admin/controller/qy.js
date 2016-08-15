@@ -6,6 +6,6 @@ export default class extends Base {
 
   init(http){
     super.init(http);
-    this.db = this.model('gs');
+    this.db = this.model('qy');
   }
 }

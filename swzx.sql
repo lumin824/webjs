@@ -1,6 +1,6 @@
-CREATE TABLE `think_gs` (
+CREATE TABLE `think_qy` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `zch` varchar(255) NOT NULL DEFAULT '' COMMENT '注册号/统一社会信用代码',
+  `tyshxydm` varchar(255) NOT NULL DEFAULT '' COMMENT '注册号/统一社会信用代码',
   `mc` varchar(255) NOT NULL DEFAULT '' COMMENT '名称',
   `lx` varchar(255) NOT NULL DEFAULT '' COMMENT '类型',
   `fddbr` varchar(255) NOT NULL DEFAULT '' COMMENT '法定代表人',
@@ -14,4 +14,4 @@ CREATE TABLE `think_gs` (
   `hzrq` varchar(255) NOT NULL DEFAULT '' COMMENT '核准日期',
   `djzt` varchar(255) NOT NULL DEFAULT '' COMMENT '登记状态',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=247 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=250 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC

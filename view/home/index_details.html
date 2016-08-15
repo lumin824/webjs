@@ -1,12 +1,20 @@
 {% extends "./inc/base.html" %}
 
+{% block style %}
+<style>
+table th{
+	text-align: center;
+}
+</style>
+{% endblock %}
+
 {% block content %}
 <!-- Search Section Starts -->
 	<section class="search-area condensed parallax">
 	<!-- Nested Container Starts -->
 		<div class="container text-center">
 			<h3 class="text-normal">Find the best Restaurants, Cafes &amp; Cuisine in Your Place</h3>
-			<form class="top-search">
+			<form class="top-search" action="/index/listing">
 				<div class="input-group-md">
 					<div class="input-group-btn search-panel">
 						<button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
@@ -26,11 +34,11 @@
 					<div class="form-group">
 						<div class="icon-addon addon-lg">
 							<label class="fa fa-search"></label>
-							<input type="text" class="form-control input-lg flat" name="search-location" placeholder="Search for a Restaurants, Cafes, Cuisine, etc..,">
+							<input type="text" class="form-control input-lg flat" name="q" placeholder="Search for a Restaurants, Cafes, Cuisine, etc..,">
 						</div>
 					</div>
 					<span class="input-group-btn">
-						<button class="btn btn-lg btn-secondary animation text-uppercase" type="button">Search</button>
+						<button class="btn btn-lg btn-secondary animation text-uppercase" type="submit">Search</button>
 					</span>
 				</div>
 			</form>
@@ -56,800 +64,757 @@
 	<div class="container main-container">
 	<!-- Heading Starts -->
 		<h4 class="main-heading-1 text-center-sm text-center-xs">
-			Hyderabad Special Food Dabha, Begumpet
+			{{info.mc}}
 		</h4>
 	<!-- Heading Ends -->
-	<!-- Main Banner Starts -->
-		<div class="banner-area">
-			<img src="/static/home/images/banners/main-banner-img2.jpg" alt="Banner" class="img-responsive border-radius-4">
-		</div>
-	<!-- Main Banner Ends -->
 	<!-- Nested Row Starts -->
 		<div class="row">
 		<!-- Mainarea Starts -->
-			<div class="col-md-9 col-xs-12">
+			<div class="col-md-12 col-xs-12">
 			<!-- Menu Tabs Starts -->
 				<div class="menu-tabs-wrap">
 				<!-- Menu Tabs List Starts -->
 					<ul class="nav nav-tabs nav-menu-tabs text-center-xs">
-						<li class="active"><a href="#menu" data-toggle="tab">Menu</a></li>
-						<li><a href="#information" data-toggle="tab">Information</a></li>
-						<li><a href="#gallery" data-toggle="tab">Gallery</a></li>
-						<li><a href="#reviews" data-toggle="tab">Reviews</a></li>
-						<li><a href="#reachus" data-toggle="tab">Reach Us</a></li>
+						<li class="active"><a href="#menu" data-toggle="tab">基本信息</a></li>
+						<li><a href="#information" data-toggle="tab">经营状况</a></li>
+						<li><a href="#gallery" data-toggle="tab">财务报表</a></li>
+						<li><a href="#reviews" data-toggle="tab">新闻资讯</a></li>
+						<li><a href="#reachus" data-toggle="tab">专家点评</a></li>
 					</ul>
 				<!-- Menu Tabs List Ends -->
-				<!-- Menu Tabs Content Starts -->
-					<div class="tab-content">
-					<!-- Tab #1 Starts -->
-						<div id="menu" class="tab-pane active">
-						<!-- Tab #1 Nested Row Starts -->
-							<div class="row">
-							<!-- Left Column Starts -->
-								<div class="col-sm-4 col-xs-12">
-									<div class="side-block-1">
-										<h6>Delivery Menu</h6>
-										<ul class="list-unstyled list-style-2">
-											<li>Soups</li>
-											<li>Southern Grills: Veg.</li>
-											<li>Southern Grills: Non-Veg.</li>
-											<li>Starters</li>
-											<li>Chinese Starters</li>
-											<li>North Indian Main Course</li>
-											<li>Traditional Telugu Maincourse</li>
-											<li>Indian Breads</li>
-											<li>Rice, Biryani &amp; Pulao</li>
-											<li>Accompaniments</li>
-											<li>Desserts &amp; Beverages</li>
-										</ul>
+					<div class="row ">
+					<!-- Menu Tabs Content Starts -->
+						<div class="tab-content col-md-9">
+						<!-- Tab #1 Starts -->
+							<div id="menu" class="tab-pane active">
+							<!-- Tab #1 Nested Row Starts -->
+								<div class="row">
+									<div class="col-sm-12 col-xs-12">
+										<div class="panel panel-default">
+											<!-- Default panel contents -->
+											<div class="panel-heading">基本信息</div>
+											<div class="panel-body row">
+												<div class="col-sm-6">
+													统一社会信用代码
+												</div>
+												<div class="col-sm-6">
+													名称
+												</div>
+												<div class="col-sm-6">
+													类型
+												</div>
+												<div class="col-sm-6">
+													法定代表人
+												</div>
+												<div class="col-sm-6">
+													注册资本
+												</div>
+												<div class="col-sm-6">
+													成立日期
+												</div>
+												<div class="col-sm-12">
+													住所
+												</div>
+												<div class="col-sm-6">
+													营业期限自
+												</div>
+												<div class="col-sm-6">
+													营业期限至
+												</div>
+												<div class="col-sm-12">
+													经营范围
+												</div>
+												<div class="col-sm-6">
+													登记机关
+												</div>
+												<div class="col-sm-6">
+													核准日期
+												</div>
+												<div class="col-sm-12">
+													登记状态
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-12 col-xs-12">
+										<div class="panel panel-default">
+											<!-- Default panel contents -->
+											<div class="panel-heading">股东信息</div>
+											<table class="table table-bordered">
+												<tr>
+													<th>股东类型</th>
+													<th>股东</th>
+													<th>证照/证件类型</th>
+													<th>证照/证件号码</th>
+													<th>详情</th>
+												</tr>
+												<tr>
+													<td>1</td>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>2</td>
+												</tr>
+												<tr>
+													<td>1</td>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>2</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+
+									<div class="col-sm-12 col-xs-12">
+										<div class="panel panel-default">
+											<!-- Default panel contents -->
+											<div class="panel-heading">股东及出资信息</div>
+											<table class="table table-bordered">
+												<tr>
+													<th rowspan="2">股东</th>
+													<th rowspan="2">认缴额（万元）</th>
+													<th rowspan="2">实缴额（万元）</th>
+													<th colspan="3">认缴明细</th>
+													<th colspan="3">实缴明细</th>
+												</tr>
+												<tr>
+													<th>认缴出资方式</th>
+													<th>认缴出资额（万元）</th>
+													<th>认缴出资日期</th>
+													<th>实缴出资方式</th>
+													<th>实缴出资额（万元）</th>
+													<th>实缴出资日期</th>
+												</tr>
+												<tr>
+													<td>1</td>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>2</td>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>2</td>
+												</tr>
+												<tr>
+													<td>1</td>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>2</td>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>2</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+
+
+
+									<div class="col-sm-12 col-xs-12">
+										<div class="panel panel-default">
+											<!-- Default panel contents -->
+											<div class="panel-heading">变更信息</div>
+											<table class="table table-bordered">
+												<tr>
+													<th>变更事项</th>
+													<th>变更前内容</th>
+													<th>变更后内容</th>
+													<th>变更日期</th>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>2</td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>2</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+
+									<div class="col-sm-12 col-xs-12">
+										<div class="panel panel-default">
+											<!-- Default panel contents -->
+											<div class="panel-heading">主要人员</div>
+											<table class="table table-bordered">
+												<tr>
+													<th>序号</th>
+													<th>姓名</th>
+													<th>职务</th>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+
+									<div class="col-sm-12 col-xs-12">
+										<div class="panel panel-default">
+											<!-- Default panel contents -->
+											<div class="panel-heading">分支机构信息</div>
+											<table class="table table-bordered">
+												<tr>
+													<th>序号</th>
+													<th>统一社会信用代码</th>
+													<th>名称</th>
+													<th>登记机关</th>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+
+									<div class="col-sm-12 col-xs-12">
+										<div class="panel panel-default">
+											<!-- Default panel contents -->
+											<div class="panel-heading">动产抵押登记信息</div>
+											<table class="table table-bordered">
+												<tr>
+													<th>序号</th>
+													<th>登记编号</th>
+													<th>登记日期</th>
+													<th>登记机关</th>
+													<th>被担保债权数额</th>
+													<th>状态</th>
+													<th>详情</th>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+
+									<div class="col-sm-12 col-xs-12">
+										<div class="panel panel-default">
+											<!-- Default panel contents -->
+											<div class="panel-heading">股权出质登记信息</div>
+											<table class="table table-bordered">
+												<tr>
+													<th>序号</th>
+													<th>登记编号</th>
+													<th>出质人</th>
+													<th>证照/证件号码</th>
+													<th>出质股权数额</th>
+													<th>质权人</th>
+													<th>证照/证件号码</th>
+													<th>股权出质设立登记日期</th>
+													<th>状态</th>
+													<th>变化情况</th>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+													<td>1</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+
+									<div class="col-sm-12 col-xs-12">
+										<div class="panel panel-default">
+											<!-- Default panel contents -->
+											<div class="panel-heading">企业年报</div>
+											<table class="table table-bordered">
+												<tr>
+													<th>序号</th>
+													<th>报送年度</th>
+													<th>发布日期</th>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>1</td>
+													<td>1</td>
+												</tr>
+											</table>
+										</div>
 									</div>
 								</div>
-							<!-- Left Column Ends -->
-							<!-- Right Column Starts -->
-								<div class="col-sm-8 col-xs-12">
-								<!-- Order Menu Tab Pane Starts -->
-									<div class="order-menu-tab-pane text-center-xs">
-										<p>
-											<img src="/static/home/images/banners/banner-discount.png" alt="Discount Banner" class="img-responsive img-center-xs">
-										</p>
-									<!-- Order Menu List #1 Starts -->
-										<h5>Soups</h5>
-										<p>
-											<img src="/static/home/images/banners/tab-banner-img1.png" alt="Banner" class="img-responsive img-center-xs">
-										</p>
-										<div class="spacer"></div>
-										<div class="order-menu-item clearfix">
-											<div class="pull-left">
-												<h6>Miryala Rasam</h6>
-												<p>Pepper Rasam Masala Soup</p>
-												<i class="fa fa-dot-circle-o veg"></i>
-											</div>
-											<div class="pull-right">
-												<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-											</div>
-										</div>
-										<div class="order-menu-item clearfix">
-											<div class="pull-left">
-												<h6>Mokkajonna Shorba</h6>
-												<p>Thick sweet corn soup</p>
-												<i class="fa fa-dot-circle-o veg"></i>
-											</div>
-											<div class="pull-right">
-												<a href="#" class="btn btn-tertiary animation"><span class="price-new">$11.55</span> / <span class="price-old">$15</span> <i class="fa fa-plus-circle"></i></a>
-											</div>
-										</div>
-										<div class="order-menu-item clearfix">
-											<div class="pull-left">
-												<h6>Kodi Mokkajonna Shorba</h6>
-												<p>Thick sweet corn soup with shredded chicken</p>
-												<i class="fa fa-dot-circle-o non-veg"></i>
-											</div>
-											<div class="pull-right">
-												<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-											</div>
-										</div>
-										<div class="order-menu-item clearfix">
-											<div class="pull-left">
-												<h6>Paya Soup</h6>
-												<p>Lamb trotters soup cooked in traditional spices</p>
-												<i class="fa fa-dot-circle-o non-veg"></i>
-											</div>
-											<div class="pull-right">
-												<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-											</div>
-										</div>
-									<!-- Order Menu List #1 Ends -->
-									<!-- Spacer Starts -->
-										<div class="spacer big"></div>
-									<!-- Spacer Ends -->
-									<!-- Order Menu List #2 Starts -->
-										<h5>Southern Grills: Veg.</h5>
-										<p>
-											<img src="/static/home/images/banners/tab-banner-img2.png" alt="Banner" class="img-responsive img-center-xs">
-										</p>
-										<div class="order-menu-item clearfix">
-											<div class="pull-left">
-												<h6>Miryala Rasam</h6>
-												<p>Pepper Rasam Masala Soup</p>
-												<i class="fa fa-dot-circle-o veg"></i>
-											</div>
-											<div class="pull-right">
-												<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-											</div>
-										</div>
-										<div class="order-menu-item clearfix">
-											<div class="pull-left">
-												<h6>Mokkajonna Shorba</h6>
-												<p>Thick sweet corn soup</p>
-												<i class="fa fa-dot-circle-o veg"></i>
-											</div>
-											<div class="pull-right">
-												<a href="#" class="btn btn-tertiary animation"><span class="price-new">$11.55</span> / <span class="price-old">$15</span> <i class="fa fa-plus-circle"></i></a>
-											</div>
-										</div>
-										<div class="order-menu-item clearfix">
-											<div class="pull-left">
-												<h6>Kodi Mokkajonna Shorba</h6>
-												<p>Thick sweet corn soup with shredded chicken</p>
-												<i class="fa fa-dot-circle-o non-veg"></i>
-											</div>
-											<div class="pull-right">
-												<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-											</div>
-										</div>
-										<div class="order-menu-item clearfix">
-											<div class="pull-left">
-												<h6>Paya Soup</h6>
-												<p>Lamb trotters soup cooked in traditional spices</p>
-												<i class="fa fa-dot-circle-o non-veg"></i>
-											</div>
-											<div class="pull-right">
-												<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-											</div>
-										</div>
-									<!-- Order Menu List #2 Ends -->
-									<!-- Spacer Starts -->
-										<div class="spacer big"></div>
-									<!-- Spacer Ends -->
-									<!-- Order Menu List #3 Starts -->
-										<h5>Southern Grills: Non-Veg.</h5>
-										<p>
-											<img src="/static/home/images/banners/tab-banner-img3.png" alt="Banner" class="img-responsive img-center-xs">
-										</p>
-										<div class="order-menu-item clearfix">
-											<div class="pull-left">
-												<h6>Miryala Rasam</h6>
-												<p>Pepper Rasam Masala Soup</p>
-												<i class="fa fa-dot-circle-o veg"></i>
-											</div>
-											<div class="pull-right">
-												<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-											</div>
-										</div>
-										<div class="order-menu-item clearfix">
-											<div class="pull-left">
-												<h6>Mokkajonna Shorba</h6>
-												<p>Thick sweet corn soup</p>
-												<i class="fa fa-dot-circle-o veg"></i>
-											</div>
-											<div class="pull-right">
-												<a href="#" class="btn btn-tertiary animation"><span class="price-new">$11.55</span> / <span class="price-old">$15</span> <i class="fa fa-plus-circle"></i></a>
-											</div>
-										</div>
-										<div class="order-menu-item clearfix">
-											<div class="pull-left">
-												<h6>Kodi Mokkajonna Shorba</h6>
-												<p>Thick sweet corn soup with shredded chicken</p>
-												<i class="fa fa-dot-circle-o non-veg"></i>
-											</div>
-											<div class="pull-right">
-												<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-											</div>
-										</div>
-										<div class="order-menu-item clearfix">
-											<div class="pull-left">
-												<h6>Paya Soup</h6>
-												<p>Lamb trotters soup cooked in traditional spices</p>
-												<i class="fa fa-dot-circle-o non-veg"></i>
-											</div>
-											<div class="pull-right">
-												<a href="#" class="btn btn-tertiary animation"><span class="price-new">$7.99</span> / <span class="price-old">$10</span> <i class="fa fa-plus-circle"></i></a>
-											</div>
-										</div>
-									<!-- Order Menu List #3 Ends -->
-									</div>
-								<!-- Order Menu Tab Pane Ends -->
-								<!-- Pagination Starts -->
-									<div class="pagination-block text-right text-center-xs">
-										<ul class="pagination animation">
-											<li><a href="#">&laquo;</a></li>
-											<li class="active"><a href="#">1</a></li>
-											<li><a href="#">2</a></li>
-											<li><a href="#">3</a></li>
-											<li><a href="#">&raquo;</a></li>
-										</ul>
-									</div>
-								<!-- Pagination Ends -->
-								<!-- Banners Starts -->
-									<div class="row">
-										<div class="col-xs-6">
-											<img src="/static/home/images/banners/banner-img1.png" alt="Banner 1" class="img-responsive img-center-xs">
-										</div>
-										<div class="col-xs-6">
-											<img src="/static/home/images/banners/banner-img2.png" alt="Banner 2" class="img-responsive img-center-xs">
-										</div>
-									</div>
-								<!-- Banners Ends -->
-								</div>
-							<!-- Right Column Ends -->
+							<!-- Tab #1 Nested Row Ends -->
 							</div>
-						<!-- Tab #1 Nested Row Ends -->
-						</div>
-					<!-- Tab #1 Ends -->
-					<!-- Tab #2 Starts -->
-						<div id="information" class="tab-pane">
-						<!-- Tab #2 Nested Row Starts -->
-							<div class="row">
-							<!-- Left Column Starts -->
-								<div class="col-sm-4 col-xs-12">
-									<div class="side-block-1">
-										<h6>Delivery Menu</h6>
-										<ul class="list-unstyled list-style-2">
-											<li>Soups</li>
-											<li>Southern Grills: Veg.</li>
-											<li>Southern Grills: Non-Veg.</li>
-											<li>Starters</li>
-											<li>Chinese Starters</li>
-											<li>North Indian Main Course</li>
-											<li>Traditional Telugu Maincourse</li>
-											<li>Indian Breads</li>
-											<li>Rice, Biryani &amp; Pulao</li>
-											<li>Accompaniments</li>
-											<li>Desserts &amp; Beverages</li>
-										</ul>
-									</div>
-								</div>
-							<!-- Left Column Ends -->
-							<!-- Right Column Starts -->
-								<div class="col-sm-8 col-xs-12">
-								<!-- Information Tab Pane Starts -->
-									<div class="information-tab-pane">
-										<p>
-											<img src="/static/home/images/banners/banner-discount.png" alt="Discount Banner" class="img-responsive">
-										</p>
-									<!-- Spacer Starts -->
-										<div class="spacer big"></div>
-									<!-- Spacer Ends -->
-										<p>Check out the $20 menu any drink or snack.........Cheers.</p>
-										<p>Bring your friends along &amp; party hard.</p>
-										<p>Spread the word - Food and Drinks at $20 bucks! Between 4.00 to 8.00 pm Last order @ 7.45 pm Club rules apply. Dress code mandatory. </p>
-										<p>Restaurants are solely responsible for the service; availability and quality of the events including all or any cancellations/ modifications/ complaints.</p>
-										<hr>
-									<!-- Delivery Hours Starts -->
-										<h6><i class="fa fa-clock-o"></i> Delivery Hours</h6>
-										<ul class="list-unstyled timing-list">
-											<li class="clearfix">
-												<span class="pull-left">Monday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-											<li class="clearfix">
-												<span class="pull-left">Tuesday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-											<li class="clearfix">
-												<span class="pull-left">Wednesday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-											<li class="clearfix">
-												<span class="pull-left">Thursday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-											<li class="clearfix">
-												<span class="pull-left">Friday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-											<li class="clearfix">
-												<span class="pull-left">Saturday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-											<li class="clearfix">
-												<span class="pull-left">Sunday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-										</ul>
-									<!-- Delivery Hours Ends -->
-										<hr>
-									<!-- Takeway Hours Starts -->
-										<h6><i class="fa fa-clock-o"></i> Takeway Hours</h6>
-										<ul class="list-unstyled timing-list">
-											<li class="clearfix">
-												<span class="pull-left">Monday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-											<li class="clearfix">
-												<span class="pull-left">Tuesday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-											<li class="clearfix">
-												<span class="pull-left">Wednesday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-											<li class="clearfix">
-												<span class="pull-left">Thursday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-											<li class="clearfix">
-												<span class="pull-left">Friday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-											<li class="clearfix">
-												<span class="pull-left">Saturday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-											<li class="clearfix">
-												<span class="pull-left">Sunday</span>
-												<span class="pull-right text-right">12:00 - 15:30, 18:00 - 22:30</span>
-											</li>
-										</ul>
-									<!-- Takeway Hours Ends -->
-										<hr>
-									<!-- Spacer Starts -->
-										<div class="spacer"></div>
-									<!-- Spacer Ends -->
-									<!-- Banners Starts -->
-										<div class="row">
-											<div class="col-xs-6">
-												<img src="/static/home/images/banners/banner-img1.png" alt="Banner 1" class="img-responsive img-center-xs">
+						<!-- Tab #1 Ends -->
+						<!-- Tab #2 Starts -->
+							<div id="information" class="tab-pane">
+								<div class="row">
+									<div class="col-sm-12 col-xs-12">
+										<div class="panel panel-default">
+										  <div class="panel-heading">
+												产品
 											</div>
-											<div class="col-xs-6">
-												<img src="/static/home/images/banners/banner-img2.png" alt="Banner 2" class="img-responsive img-center-xs">
-											</div>
+											<ul class="list-group">
+												<li class="list-group-item">
+													<div class="media">
+													  <div class="media-left">
+													    <a href="#">
+													      <img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+													    </a>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">斗鱼TV</h4>
+													    网址:http://www.douyutv.com 领域:网络直播
+													  </div>
+													</div>
+												</li>
+										  </ul>
 										</div>
-									<!-- Banners Ends -->
+
+										<div class="panel panel-default">
+										  <div class="panel-heading">
+										    招聘
+										  </div>
+											<ul class="list-group">
+										    <li class="list-group-item">
+													<div class="media">
+													  <div class="media-left">
+													    <a href="#">
+													      <img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+													    </a>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">Java开发工程师</h4>
+													    月薪:5000-8000 地点:盐城 来源:智联招聘
+													  </div>
+													</div>
+												</li>
+												<li class="list-group-item">
+													<div class="media">
+													  <div class="media-left">
+													    <a href="#">
+													      <img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+													    </a>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">Java开发工程师</h4>
+													    月薪:5000-8000 地点:盐城 来源:智联招聘
+													  </div>
+													</div>
+												</li>
+												<li class="list-group-item">
+													<div class="media">
+													  <div class="media-left">
+													    <a href="#">
+													      <img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+													    </a>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">Java开发工程师</h4>
+													    月薪:5000-8000 地点:盐城 来源:智联招聘
+													  </div>
+													</div>
+												</li>
+												<li class="list-group-item">
+													<div class="media">
+													  <div class="media-left">
+													    <a href="#">
+													      <img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+													    </a>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">Java开发工程师</h4>
+													    月薪:5000-8000 地点:盐城 来源:智联招聘
+													  </div>
+													</div>
+												</li>
+												<li class="list-group-item">
+													<div class="media">
+													  <div class="media-left">
+													    <a href="#">
+													      <img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+													    </a>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">Java开发工程师</h4>
+													    月薪:5000-8000 地点:盐城 来源:智联招聘
+													  </div>
+													</div>
+												</li>
+												<li class="list-group-item">
+													<div class="media">
+													  <div class="media-left">
+													    <a href="#">
+													      <img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+													    </a>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">Java开发工程师</h4>
+													    月薪:5000-8000 地点:盐城 来源:智联招聘
+													  </div>
+													</div>
+												</li>
+										  </ul>
+										</div>
 									</div>
-								<!-- Information Tab Pane Ends -->
 								</div>
-							<!-- Right Column Ends -->
 							</div>
-						<!-- Tab #1 Nested Row Ends -->
-						</div>
-					<!-- Tab #2 Ends -->
-					<!-- Tab #3 Starts -->
-						<div id="gallery" class="tab-pane">
-						<!-- Image Gallery Starts -->
-							<ul class="row list-unstyled gallery-grid">
-							<!-- Gallery Image #1 Starts -->
-								<li class="col-sm-4 col-xs-6">
-									<div class="hover-content">
-										<img src="/static/home/images/gallery/thumb/gallery-thumb-img1.jpg" alt="Gallery Image" class="img-responsive img-center-sm img-center-xs">
-										<div class="overlay animation">
-											<a href="images/gallery/big/gallery-big-img1.jpg" class="btn btn-link zoom"><i class="fa fa-search-plus"></i></a>
-										</div>
+						<!-- Tab #2 Ends -->
+						<!-- Tab #3 Starts -->
+							<div id="gallery" class="tab-pane">
+								<div class="col-sm-12 col-xs-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">资产负债表</div>
+										<table class="table table-bordered">
+											<tr>
+												<td>报告期日</td>
+												<td>2015-12-31</td>
+												<td>2015-06-30</td>
+											</tr>
+											<tr>
+												<td>货币资金</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>交易行金融资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>可出售金融资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>固定资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>无形资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>长期股权投资</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>总资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>应付利息</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>应付职工薪酬</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+										</table>
 									</div>
-								</li>
-							<!-- Gallery Image #1 Ends -->
-							<!-- Gallery Image #2 Starts -->
-								<li class="col-sm-4 col-xs-6">
-									<div class="hover-content">
-										<img src="/static/home/images/gallery/thumb/gallery-thumb-img2.jpg" alt="Gallery Image" class="img-responsive img-center-sm img-center-xs">
-										<div class="overlay animation">
-											<a href="images/gallery/big/gallery-big-img2.jpg" class="btn btn-link zoom"><i class="fa fa-search-plus"></i></a>
-										</div>
+
+									<div class="panel panel-default">
+										<div class="panel-heading">利润表</div>
+										<table class="table table-bordered">
+											<tr>
+												<td>报告期日</td>
+												<td>2015-12-31</td>
+												<td>2015-06-30</td>
+											</tr>
+											<tr>
+												<td>货币资金</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>交易行金融资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>可出售金融资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>固定资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>无形资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>长期股权投资</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>总资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>应付利息</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>应付职工薪酬</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+										</table>
 									</div>
-								</li>
-							<!-- Gallery Image #2 Ends -->
-							<!-- Gallery Image #3 Starts -->
-								<li class="col-sm-4 col-xs-6">
-									<div class="hover-content">
-										<img src="/static/home/images/gallery/thumb/gallery-thumb-img3.jpg" alt="Gallery Image" class="img-responsive img-center-sm img-center-xs">
-										<div class="overlay animation">
-											<a href="images/gallery/big/gallery-big-img3.jpg" class="btn btn-link zoom"><i class="fa fa-search-plus"></i></a>
-										</div>
-									</div>
-								</li>
-							<!-- Gallery Image #3 Ends -->
-							<!-- Gallery Image #4 Starts -->
-								<li class="col-sm-4 col-xs-6">
-									<div class="hover-content">
-										<img src="/static/home/images/gallery/thumb/gallery-thumb-img4.jpg" alt="Gallery Image" class="img-responsive img-center-sm img-center-xs">
-										<div class="overlay animation">
-											<a href="images/gallery/big/gallery-big-img4.jpg" class="btn btn-link zoom"><i class="fa fa-search-plus"></i></a>
-										</div>
-									</div>
-								</li>
-							<!-- Gallery Image #4 Ends -->
-							<!-- Gallery Image #5 Starts -->
-								<li class="col-sm-4 col-xs-6">
-									<div class="hover-content">
-										<img src="/static/home/images/gallery/thumb/gallery-thumb-img5.jpg" alt="Gallery Image" class="img-responsive img-center-sm img-center-xs">
-										<div class="overlay animation">
-											<a href="images/gallery/big/gallery-big-img5.jpg" class="btn btn-link zoom"><i class="fa fa-search-plus"></i></a>
-										</div>
-									</div>
-								</li>
-							<!-- Gallery Image #5 Ends -->
-							<!-- Gallery Image #6 Starts -->
-								<li class="col-sm-4 col-xs-6">
-									<div class="hover-content">
-										<img src="/static/home/images/gallery/thumb/gallery-thumb-img6.jpg" alt="Gallery Image" class="img-responsive img-center-sm img-center-xs">
-										<div class="overlay animation">
-											<a href="images/gallery/big/gallery-big-img6.jpg" class="btn btn-link zoom"><i class="fa fa-search-plus"></i></a>
-										</div>
-									</div>
-								</li>
-							<!-- Gallery Image #6 Ends -->
-							<!-- Gallery Image #7 Starts -->
-								<li class="col-sm-4 col-xs-6">
-									<div class="hover-content">
-										<img src="/static/home/images/gallery/thumb/gallery-thumb-img7.jpg" alt="Gallery Image" class="img-responsive img-center-sm img-center-xs">
-										<div class="overlay animation">
-											<a href="images/gallery/big/gallery-big-img7.jpg" class="btn btn-link zoom"><i class="fa fa-search-plus"></i></a>
-										</div>
-									</div>
-								</li>
-							<!-- Gallery Image #7 Ends -->
-							<!-- Gallery Image #8 Starts -->
-								<li class="col-sm-4 col-xs-6">
-									<div class="hover-content">
-										<img src="/static/home/images/gallery/thumb/gallery-thumb-img8.jpg" alt="Gallery Image" class="img-responsive img-center-sm img-center-xs">
-										<div class="overlay animation">
-											<a href="images/gallery/big/gallery-big-img8.jpg" class="btn btn-link zoom"><i class="fa fa-search-plus"></i></a>
-										</div>
-									</div>
-								</li>
-							<!-- Gallery Image #8 Ends -->
-							<!-- Gallery Image #9 Starts -->
-								<li class="col-sm-4 col-xs-6">
-									<div class="hover-content">
-										<img src="/static/home/images/gallery/thumb/gallery-thumb-img9.jpg" alt="Gallery Image" class="img-responsive img-center-sm img-center-xs">
-										<div class="overlay animation">
-											<a href="images/gallery/big/gallery-big-img9.jpg" class="btn btn-link zoom"><i class="fa fa-search-plus"></i></a>
-										</div>
-									</div>
-								</li>
-							<!-- Gallery Image #9 Ends -->
-							</ul>
-						<!-- Image Gallery Ends -->
-						</div>
-					<!-- Tab #3 Ends -->
-					<!-- Tab #4 Starts -->
-						<div id="reviews" class="tab-pane">
-						<!-- Tab #4 Nested Row Starts -->
-							<div class="row">
-							<!-- Left Column Starts -->
-								<div class="col-sm-4 col-xs-12">
-									<div class="side-block-1">
-										<h6>Delivery Menu</h6>
-										<ul class="list-unstyled list-style-2">
-											<li>Soups</li>
-											<li>Southern Grills: Veg.</li>
-											<li>Southern Grills: Non-Veg.</li>
-											<li>Starters</li>
-											<li>Chinese Starters</li>
-											<li>North Indian Main Course</li>
-											<li>Traditional Telugu Maincourse</li>
-											<li>Indian Breads</li>
-											<li>Rice, Biryani &amp; Pulao</li>
-											<li>Accompaniments</li>
-											<li>Desserts &amp; Beverages</li>
-										</ul>
+
+									<div class="panel panel-default">
+										<div class="panel-heading">现金流量表</div>
+										<table class="table table-bordered">
+											<tr>
+												<td>报告期日</td>
+												<td>2015-12-31</td>
+												<td>2015-06-30</td>
+											</tr>
+											<tr>
+												<td>货币资金</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>交易行金融资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>可出售金融资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>固定资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>无形资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>长期股权投资</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>总资产</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>应付利息</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>应付职工薪酬</td>
+												<td>1</td>
+												<td>1</td>
+											</tr>
+										</table>
 									</div>
 								</div>
-							<!-- Left Column Ends -->
-							<!-- Right Column Starts -->
-								<div class="col-sm-8 col-xs-12">
-								<!-- Reviews Tab Pane Starts -->
-									<div class="reviews-tab-pane">
-									<!-- Reviews Form Box Starts -->
-										<div class="reviews-form-box">
-											<h6>Write a Review</h6>
-											<form>
-												<textarea class="form-control" rows="4" placeholder="Message should be atleast 130 charecters"></textarea>
-												<div class="clearfix">
-													<ul class="list-unstyled list-inline rating-star pull-left">
-														<li><i class="fa fa-star"></i></li>
-														<li><i class="fa fa-star"></i></li>
-														<li><i class="fa fa-star"></i></li>
-														<li><i class="fa fa-star"></i></li>
-														<li><i class="fa fa-star"></i></li>
-													</ul>
-													<a href="#" class="btn btn-black animation text-uppercase pull-right">Submit</a>
-												</div>
-											</form>
-										</div>
-									<!-- Reviews Form Box Ends -->
-									<!-- Reviews List Starts -->
-										<div class="reviews-box">
-										<!-- Review #1 Starts -->
-											<div class="review-list">
-												<div class="clearfix">
-													<div class="pull-left">
-														<h6><i class="fa fa-calendar"></i> Mar 10, 2016</h6>
-														<h6>By Sainath Chillapuram</h6>
-														<ul class="list-unstyled list-inline rating-star-list">
-															<li><i class="fa fa-star"></i></li>
-															<li><i class="fa fa-star"></i></li>
-															<li><i class="fa fa-star"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-														</ul>
-													</div>
-													<img src="/static/home/images/review-thumb-img1.png" alt="Image" class="img-responsive pull-right">
-												</div>
-												<div class="review-list-content">
-													<p>The delivery guy said he will be back in 10 mins with the missing items, but never came back. when I called the restaurant, they took another 30 mins to deliver.</p>
-												</div>
-											</div>
-										<!-- Review #1 Ends -->
-										<!-- Review #2 Starts -->
-											<div class="review-list">
-												<div class="clearfix">
-													<div class="pull-left">
-														<h6><i class="fa fa-calendar"></i> Mar 10, 2016</h6>
-														<h6>By Sainath Chillapuram</h6>
-														<ul class="list-unstyled list-inline rating-star-list">
-															<li><i class="fa fa-star"></i></li>
-															<li><i class="fa fa-star"></i></li>
-															<li><i class="fa fa-star"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-														</ul>
-													</div>
-													<img src="/static/home/images/review-thumb-img1.png" alt="Image" class="img-responsive pull-right">
-												</div>
-												<div class="review-list-content">
-													<p>The delivery guy said he will be back in 10 mins with the missing items, but never came back. when I called the restaurant, they took another 30 mins to deliver.</p>
-												</div>
-											</div>
-										<!-- Review #2 Ends -->
-										<!-- Review #3 Starts -->
-											<div class="review-list">
-												<div class="clearfix">
-													<div class="pull-left">
-														<h6><i class="fa fa-calendar"></i> Mar 10, 2016</h6>
-														<h6>By Sainath Chillapuram</h6>
-														<ul class="list-unstyled list-inline rating-star-list">
-															<li><i class="fa fa-star"></i></li>
-															<li><i class="fa fa-star"></i></li>
-															<li><i class="fa fa-star"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-														</ul>
-													</div>
-													<img src="/static/home/images/review-thumb-img1.png" alt="Image" class="img-responsive pull-right">
-												</div>
-												<div class="review-list-content">
-													<p>The delivery guy said he will be back in 10 mins with the missing items, but never came back. when I called the restaurant, they took another 30 mins to deliver.</p>
-												</div>
-											</div>
-										<!-- Review #3 Ends -->
-										<!-- Review #4 Starts -->
-											<div class="review-list">
-												<div class="clearfix">
-													<div class="pull-left">
-														<h6><i class="fa fa-calendar"></i> Mar 10, 2016</h6>
-														<h6>By Sainath Chillapuram</h6>
-														<ul class="list-unstyled list-inline rating-star-list">
-															<li><i class="fa fa-star"></i></li>
-															<li><i class="fa fa-star"></i></li>
-															<li><i class="fa fa-star"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-														</ul>
-													</div>
-													<img src="/static/home/images/review-thumb-img1.png" alt="Image" class="img-responsive pull-right">
-												</div>
-												<div class="review-list-content">
-													<p>The delivery guy said he will be back in 10 mins with the missing items, but never came back. when I called the restaurant, they took another 30 mins to deliver.</p>
-												</div>
-											</div>
-										<!-- Review #4 Ends -->
-										</div>
-									<!-- Reviews List Ends -->
-									<!-- Spacer Starts -->
-										<div class="spacer-1 condensed"></div>
-									<!-- Spacer Ends -->
-									<!-- Banners Starts -->
-										<div class="row">
-											<div class="col-xs-6">
-												<img src="/static/home/images/banners/banner-img1.png" alt="Banner 1" class="img-responsive img-center-xs">
-											</div>
-											<div class="col-xs-6">
-												<img src="/static/home/images/banners/banner-img2.png" alt="Banner 2" class="img-responsive img-center-xs">
-											</div>
-										</div>
-									<!-- Banners Ends -->
-									</div>
-								<!-- Reviews Tab Pane Ends -->
-								</div>
-							<!-- Right Column Ends -->
 							</div>
-						<!-- Tab #4 Nested Row Ends -->
-						</div>
-					<!-- Tab #4 Ends -->
-					<!-- Tab #5 Starts -->
-						<div id="reachus" class="tab-pane">
-						<!-- Tab #5 Nested Row Starts -->
-							<div class="row">
-							<!-- Left Column Starts -->
-								<div class="col-sm-4 col-xs-12">
-									<div class="side-block-1">
-										<h6>Delivery Menu</h6>
-										<ul class="list-unstyled list-style-2">
-											<li>Soups</li>
-											<li>Southern Grills: Veg.</li>
-											<li>Southern Grills: Non-Veg.</li>
-											<li>Starters</li>
-											<li>Chinese Starters</li>
-											<li>North Indian Main Course</li>
-											<li>Traditional Telugu Maincourse</li>
-											<li>Indian Breads</li>
-											<li>Rice, Biryani &amp; Pulao</li>
-											<li>Accompaniments</li>
-											<li>Desserts &amp; Beverages</li>
-										</ul>
-									</div>
-								</div>
-							<!-- Left Column Ends -->
-							<!-- Right Column Starts -->
-								<div class="col-sm-8 col-xs-12">
-								<!-- Reach Us Tab Pane Starts -->
-									<div class="reachus-tab-pane">
-									<!-- Map Starts -->
-										<div class="map"></div>
-									<!-- Map Ends -->
-									<!-- Address Block Starts -->
-										<div class="address-block">
-											<h6><i class="fa fa-tag"></i> Address</h6>
-											<ul class="list-unstyled">
-												<li> # 201, Plot No. 39, Abids Road, Near Chirag Ali Lane,</li>
-												<li>Hyderabad - 500 001 , Telangana, India.</li>
-											</ul>
-											<h6><i class="fa fa-phone"></i> Phone Numbers</h6>
-											<ul class="list-unstyled">
-												<li>040-80180280, 040-22113366</li>
-											</ul>
-											<h6><i class="fa fa-mobile"></i> Can be in touch with Watsapp</h6>
-											<ul class="list-unstyled">
-												<li>+21 998 909 9999</li>
-											</ul>
-										</div>
-									<!-- Address Block Ends -->
-									<!-- Reach Form Starts -->
-										<div class="reachus-form">
-											<h6>Drop us a mail for Table Reservation</h6>
-											<form action="#">
-												<div class="form-group">
-													<label class="sr-only" for="reachus-name">Name</label>
-													<input type="text" class="form-control flat" id="reachus-name" placeholder="Name">
-												</div>
-												<div class="form-group">
-													<label class="sr-only" for="reachus-email">E-mail</label>
-													<input type="email" class="form-control flat" id="reachus-email" placeholder="e-mail">
-												</div>
-												<div class="form-group">
-													<label class="sr-only" for="reachus-mobileno">Mobile No</label>
-													<input type="text" class="form-control flat" id="reachus-mobileno" placeholder="Mobile No">
-												</div>
-												<div class="row">
-													<div class="col-xs-6">
-														<div class="form-group">
-															<div class="input-group">
-																<label class="sr-only" for="reachus-date">Date</label>
-																<input type="text" class="form-control flat datepickerInput" id="reachus-date" placeholder="Date">
-																<span class="input-group-addon flat">
-																	<span class="fa fa-calendar"></span>
-																</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-xs-6">
-														<div class="form-group">
-															<label class="sr-only" for="reachus-persons">No.of Persons</label>
-															<select class="form-control flat">
-																<option>No.of Persons</option>
-																<option>1</option>
-																<option>2</option>
-																<option>3</option>
-																<option>4</option>
-																<option>5</option>
-															</select>
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="sr-only" for="reachus-info">Your Information</label>
-													<textarea class="form-control flat" id="reachus-info" placeholder="Your Information" rows="5"></textarea>
-												</div>
-												<div class="clearfix">
-													<button type="submit" class="btn btn-secondary text-uppercase animation pull-right">Submit</button>
-												</div>
-											</form>
-										</div>
-									<!-- Reach Form Ends -->
-									<!-- Banners Starts -->
-										<div class="row">
-											<div class="col-xs-6">
-												<img src="/static/home/images/banners/banner-img1.png" alt="Banner 1" class="img-responsive img-center-xs">
+						<!-- Tab #3 Ends -->
+						<!-- Tab #4 Starts -->
+							<div id="reviews" class="tab-pane">
+								<ul class="list-group">
+									<li class="list-group-item">
+										<div class="media">
+											<div class="media-left">
+												<a href="#">
+													<img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+												</a>
 											</div>
-											<div class="col-xs-6">
-												<img src="/static/home/images/banners/banner-img2.png" alt="Banner 2" class="img-responsive img-center-xs">
+											<div class="media-body">
+												<h4 class="media-heading">新闻1</h4>
+												新闻1简介
 											</div>
 										</div>
-									<!-- Banners Ends -->
-									</div>
-								<!-- Reach Us Tab Pane Ends -->
-								</div>
-							<!-- Right Column Ends -->
+									</li>
+									<li class="list-group-item">
+										<div class="media">
+											<div class="media-left">
+												<a href="#">
+													<img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+												</a>
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading">新闻2</h4>
+												新闻2简介
+											</div>
+										</div>
+									</li>
+									<li class="list-group-item">
+										<div class="media">
+											<div class="media-left">
+												<a href="#">
+													<img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+												</a>
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading">新闻3</h4>
+												新闻3简介
+											</div>
+										</div>
+									</li>
+									<li class="list-group-item">
+										<div class="media">
+											<div class="media-left">
+												<a href="#">
+													<img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+												</a>
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading">新闻4</h4>
+												新闻4简介
+											</div>
+										</div>
+									</li>
+								</ul>
 							</div>
-						<!-- Tab #5 Nested Row Ends -->
+						<!-- Tab #4 Ends -->
+						<!-- Tab #5 Starts -->
+							<div id="reachus" class="tab-pane">
+								<ul class="list-group">
+									<li class="list-group-item">
+										<div class="media">
+											<div class="media-left">
+												<a href="#">
+													<img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+												</a>
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading">点评1</h4>
+												点评1简介
+											</div>
+										</div>
+									</li>
+									<li class="list-group-item">
+										<div class="media">
+											<div class="media-left">
+												<a href="#">
+													<img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+												</a>
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading">点评2</h4>
+												点评2简介
+											</div>
+										</div>
+									</li>
+									<li class="list-group-item">
+										<div class="media">
+											<div class="media-left">
+												<a href="#">
+													<img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+												</a>
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading">点评3</h4>
+												点评3简介
+											</div>
+										</div>
+									</li>
+									<li class="list-group-item">
+										<div class="media">
+											<div class="media-left">
+												<a href="#">
+													<img class="media-object" src="http://www.atool.org/placeholder.png?size=64x64" alt="...">
+												</a>
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading">点评4</h4>
+												点评4简介
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						<!-- Tab #5 Ends -->
 						</div>
-					<!-- Tab #5 Ends -->
-					</div>
-				<!-- Menu Tabs Content Ends -->
+					<!-- Menu Tabs Content Ends -->
+						<div class="col-md-3">
+							11111
+						</div>
+				</div>
 				</div>
 			<!-- Menu Tabs Ends -->
 			</div>
 		<!-- Mainarea Ends -->
-		<!-- Sidearea Starts -->
-			<div class="col-md-3 col-xs-12">
-			<!-- Spacer Starts -->
-				<div class="spacer-1 medium hidden-lg hidden-md"></div>
-			<!-- Spacer Ends -->
-			<!-- Your Order Starts -->
-				<div class="side-block-order border-radius-4">
-				<!-- Heading Starts -->
-					<h6 class="text-center"><i class="fa fa-shopping-basket"></i> Your Orders</h6>
-				<!-- Heading Ends -->
-				<!-- Order Content Starts -->
-					<div class="side-block-order-content">
-					<!-- Order Item List Starts -->
-						<ul class="list-unstyled order-item-list">
-							<li class="clearfix">
-								<span class="pull-left">Miryala Rasam</span>
-								<span class="pull-right text-spl-color">$7.99</span>
-							</li>
-							<li class="clearfix">
-								<span class="pull-left">Mokkajonna Shorba</span>
-								<span class="pull-right text-spl-color">$8.45</span>
-							</li>
-							<li class="clearfix">
-								<span class="pull-left">Miryala Rasam</span>
-								<span class="pull-right text-spl-color">$7.99</span>
-							</li>
-							<li class="clearfix">
-								<span class="pull-left">Mokkajonna Shorba</span>
-								<span class="pull-right text-spl-color">$8.45</span>
-							</li>
-						</ul>
-					<!-- Order Item List Ends -->
-					<!-- Order Item Total Starts -->
-						<dl class="dl-horizontal order-item-total">
-							<dt class="text-light">Orders Amount :</dt>
-							<dd class="text-spl-color text-right">$30.45</dd>
-							<dt class="text-light">Delivery Charges :</dt>
-							<dd class="text-spl-color text-right">$5.00</dd>
-							<hr>
-							<dt class="text-bold">Total  Amount :</dt>
-							<dd class="text-bold text-spl-color text-right">$35.45</dd>
-						</dl>
-					<!-- Order Item Total Ends -->
-						<p class="text-center text-light text-spl-color">Menu List of your Orders</p>
-					</div>
-				<!-- Order Content Ends -->
-				</div>
-			<!-- Your Order Ends -->
-			<!-- Sponsors Banners Starts -->
-				<p class="text-muted text-center-sm text-center-xs">Sponsors for the website</p>
-				<ul class="list-unstyled list-banner-style-1">
-					<li><a href="#"><img src="/static/home/images/banners/sponsors-banner-img1.png" alt="Banner 1" class="img-responsive img-center-sm img-center-xs"></a></li>
-					<li><a href="#"><img src="/static/home/images/banners/sponsors-banner-img2.png" alt="Banner 1" class="img-responsive img-center-sm img-center-xs"></a></li>
-					<li><a href="#"><img src="/static/home/images/banners/sponsors-banner-img3.png" alt="Banner 1" class="img-responsive img-center-sm img-center-xs"></a></li>
-					<li><a href="#"><img src="/static/home/images/banners/sponsors-banner-img4.png" alt="Banner 1" class="img-responsive img-center-sm img-center-xs"></a></li>
-				</ul>
-			<!-- Sponsors Banners Ends -->
-			</div>
-		<!-- Sidearea Ends -->
+
 		</div>
 	<!-- Nested Row Ends -->
 	</div>
@@ -859,7 +824,7 @@
 {% block script %}
 <script type="text/javascript">
 $(function(){
-	$('#detailsMenuItem').addClass("active");
+	$('.menu-item-details').addClass("active");
 });
 </script>
 {% endblock %}
